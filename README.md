@@ -1,50 +1,52 @@
-Installation
-Install brew
+## Android Mobile Automation for CaptionCall App using Appium
+### Installation
+1. Install brew
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
+   `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" `
 
-Install python3 via brew
+2. Install python3 via brew
 
-brew install python3 
+   `brew install python3 `
 
-Install node via brew
+3. Install node via brew
 
-brew install node
+   `brew install node`
 
-Install Appium
+4. Install Appium
 
-npm i --location=global appium
+   `npm i --location=global appium`
 
-Install Appium UIAutomator2 driver
+5. Install Appium UIAutomator2 driver
 
-appium driver install uiautomator2
+   `appium driver install uiautomator2`
 
-Install JDK
+6. Install JDK
 
-brew install openjdk
+   `brew install openjdk`
 
-Add JDK to path (export JAVA_HOME=/usr/local/opt/openjdk@/libexec/openjdk.jdk for MacOS)
+7. Add JDK to path (export JAVA_HOME=/usr/local/opt/openjdk@<version>/libexec/openjdk.jdk for MacOS)
+8. Install Android SDK via Android Studio
+9. Open the repository via VS Code
+10. Install virtualenv using python3
 
-Install Android SDK via Android Studio
+   `pip3 install virtualenv`
 
-Open the repository via VS Code
+11. Create virtual environment in the repository
 
-Install virtualenv using python3
+   `python3 -m venv .venv`
 
-pip3 install virtualenv
+12. Activate virtual environment
 
-Create virtual environment in the repository
-python3 -m venv .venv
+   `source .venv/bin/activate`
 
-Activate virtual environment
-source .venv/bin/activate
+13. Install packages
 
-Install packages
-pip install -r requirements.txt
+   `pip install -r requirements.txt`
 
-Running Tests
-In VS Code, press view > testing
-Verify that there the tests are populated
-Plug in your device
-Verify that your device is visible using adb devices
-Press the play button to run all tests
+### Running Tests
+1. In VS Code, press view > testing
+2. Verify that there the tests are populated
+3. Plug in your device
+4. Verify that your device is visible using `adb devices`
+5. Press the play button to run all tests
+ 
