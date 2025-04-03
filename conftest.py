@@ -28,13 +28,13 @@ def appium_driver(request):
         platformName='Android',
         automationName='uiautomator2',
         deviceName='Android',
-        appPackage='com.machinegenius.olelo',
-        appActivity='.onboarding.OleloOnboardingActivity',
+        appPackage='com.sec.android.app.popupcalculator',
+        appActivity='.Calculator',
         fastReset='true',
         language='en',
         locale='US',
         enableMultiWindows=True,
-        app=current_path + app_path
+        # app=current_path + app_path
     )
 
     appium_server_url = 'http://localhost:4723'
