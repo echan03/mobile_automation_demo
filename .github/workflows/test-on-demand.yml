@@ -1,0 +1,49 @@
+name: test-on-demand
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and run tests
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [galaxy_a51]
+    
+    runs-on:
+      labels: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a multi-line script
+        run: |
+          adb devices
+
+      - name: Python setup
+        if: always()
+        uses: actions/setup-python@v4
+        with:
+            python-version: "3.11"
+            architecture: x64
+
+      - name: Node setup
+        if: always()
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          check-latest: true
+      
+      - name: Download dependencies and run test
+        if: always()
+        run: |
+          npm i --location=global appium
+          appium driver install uiautomator2 || true
+          pip3 install virtualenv
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+          pytest -m smoke --devicename=${{ matrix.platform }} --junit-xml="./output/results.xml"
+
+

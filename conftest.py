@@ -22,8 +22,6 @@ def appium_session():
 @pytest.fixture(scope="function")
 def appium_driver(request):
     
-    current_path = os.path.dirname(__file__)
-    app_path = '/apk/app-release.apk' if os.name == 'posix' else '\\apk\\app-release.apk'
     capabilities = dict(
         platformName='Android',
         automationName='uiautomator2',
@@ -34,9 +32,19 @@ def appium_driver(request):
         language='en',
         locale='US',
         enableMultiWindows=True,
-        # app=current_path + app_path
     )
-
+    
+    #capability to run in a specific device
+    deviceSerial = request.config.getoption("--devicename")
+    if deviceSerial == "galaxy_a51":
+        deviceSerial = "RZ8NA1W972A"
+    capabilities["udid"] = deviceSerial
+    
+    #capability for installing app
+    # current_path = os.path.dirname(__file__)
+    # app_path = '/apk/app-release.apk' if os.name == 'posix' else '\\apk\\app-release.apk'
+    # capabilities["app"] = app_path
+    
     appium_server_url = 'http://localhost:4723'
     capabilities_options = UiAutomator2Options().load_capabilities(capabilities)
     driver = webdriver.Remote(command_executor=appium_server_url, options=capabilities_options)
