@@ -18,6 +18,8 @@ def appium_session():
     yield service
     service.stop()
     
+def pytest_addoption(parser):
+    parser.addoption("--devicename", action="store", default="Android")    
     
 @pytest.fixture(scope="function")
 def appium_driver(request):
@@ -38,7 +40,7 @@ def appium_driver(request):
     deviceSerial = request.config.getoption("--devicename")
     if deviceSerial == "galaxy_a51":
         deviceSerial = "RZ8NA1W972A"
-    capabilities["udid"] = deviceSerial
+        capabilities["udid"] = deviceSerial
     
     #capability for installing app
     # current_path = os.path.dirname(__file__)
