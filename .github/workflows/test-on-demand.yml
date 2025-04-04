@@ -42,8 +42,8 @@ jobs:
           appium driver install uiautomator2 || true
           pip3 install virtualenv
           python3 -m venv .venv
-          source .venv/bin/activate
+          .\.venv\bin\activate
           pip install -r requirements.txt
-          pytest -m smoke --devicename=${{ matrix.platform }} --junit-xml="./output/results.xml"
+          pytest -m smoke --devicename=${{ matrix.platform }} --junit-xml=".\output\results.xml"
 
 
