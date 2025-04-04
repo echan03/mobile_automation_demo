@@ -38,9 +38,6 @@ jobs:
       - name: Download dependencies and run test
         if: always()
         run: |
-          set -ErrorAction Ignore
-          npm i --location=global appium
-          appium driver install uiautomator2
           pip3 install virtualenv
           python3 -m venv .venv
           .\.venv\bin\activate
