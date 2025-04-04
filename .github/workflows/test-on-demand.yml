@@ -38,6 +38,7 @@ jobs:
       - name: Download dependencies and run test
         if: always()
         run: |
+          set -ErrorAction Ignore
           npm i --location=global appium
           appium driver install uiautomator2 || true
           pip3 install virtualenv
