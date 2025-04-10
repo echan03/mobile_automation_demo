@@ -6,6 +6,13 @@ from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
 from appium.options.android import UiAutomator2Options
 from appium.webdriver.appium_service import AppiumService
+from pages.calculator_page import CalculatorPage
+
+#declare page objects here
+@pytest.fixture
+def pages():
+        calculator_page = CalculatorPage(driver)
+        return locals()
 
 @pytest.fixture(scope="session")
 def appium_session():
@@ -19,10 +26,12 @@ def appium_session():
     service.stop()
     
 def pytest_addoption(parser):
-    parser.addoption("--devicename", action="store", default="Android")    
+    parser.addoption("--devicename", action="store", default="Android")  
     
 @pytest.fixture(scope="function")
 def appium_driver(request):
+    
+    global driver
     
     capabilities = dict(
         platformName='Android',
